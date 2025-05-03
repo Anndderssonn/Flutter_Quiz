@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
               const SizedBox(height: 40),
-              OutlinedButton(
+              OutlinedButton.icon(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Colors.white, width: 2),
@@ -30,7 +30,8 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                child: const Text('Start Quiz'),
+                icon: const Icon(Icons.arrow_right_alt),
+                label: const Text('Start Quiz'),
               ),
             ],
           ),
