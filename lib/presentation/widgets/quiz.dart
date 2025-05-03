@@ -21,16 +21,19 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
+    Widget screenWidget = HomeScreen(switchScreen);
+    
+    if (activeScreen == 'questions-screen') {
+      screenWidget = const QuestionsScreen();
+    }
+
     return MaterialApp(
       title: 'Flutter Quiz',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
           decoration: AppBackground().background(),
-          child:
-              activeScreen == 'home-screen'
-                  ? HomeScreen(switchScreen)
-                  : const QuestionsScreen(),
+          child: screenWidget,
         ),
       ),
     );
