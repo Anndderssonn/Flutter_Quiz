@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz/config/theme/app_background.dart';
+import 'package:flutter_quiz/data/questions/questions_data.dart';
 import 'package:flutter_quiz/presentation/screens/home/home_screen.dart';
 import 'package:flutter_quiz/presentation/screens/questions/questions_screen.dart';
+import 'package:flutter_quiz/presentation/screens/summary/summary_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -11,7 +13,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];
   var activeScreen = 'home-screen';
 
   void switchScreen() {
@@ -22,6 +24,18 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+    if (selectedAnswers.length == questionsData.length) {
+      setState(() {
+        activeScreen = 'summary-screen';
+      });
+    }
+  }
+
+  void restartQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = 'questions-screen';
+    });
   }
 
   @override
@@ -30,6 +44,13 @@ class _QuizState extends State<Quiz> {
 
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
+    }
+
+    if (activeScreen == 'summary-screen') {
+      screenWidget = SummaryScreen(
+        chosenAnswers: selectedAnswers,
+        restartQuiz: restartQuiz,
+      );
     }
 
     return MaterialApp(

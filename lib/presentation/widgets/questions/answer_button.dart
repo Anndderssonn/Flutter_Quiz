@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz/config/styles/text_style.dart';
 
 class AnswerButton extends StatelessWidget {
   final String answerText;
@@ -19,7 +20,15 @@ class AnswerButton extends StatelessWidget {
         backgroundColor: const Color.fromARGB(225, 239, 235, 235),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
-      child: Text(answerText, textAlign: TextAlign.center),
+      child: Text(
+        answerText,
+        style: appTextStyle(
+          fontSize: 16,
+          color: Colors.black,
+          fontWeight: FontWeight.normal,
+        ),
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }
